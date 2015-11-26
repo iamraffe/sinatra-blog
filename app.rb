@@ -3,8 +3,6 @@ require 'sinatra/reloader'
 # require 'pry'
 require 'json'
 
-enable :sessions
-
 # DB
 require 'sinatra/activerecord'
 require './environments'
@@ -12,8 +10,26 @@ require './environments'
 # We're going to need to require our class files
 require_relative('./models/post.rb')
 require_relative('./models/blog.rb')
+require_relative('./models/user.rb')
 
 after { ActiveRecord::Base.connection.close }
+
+helpers do
+  # define a current_user method, so we can be sure if an user is authenticated
+  def current_user
+    !session[:uid].nil?
+  end
+end
+
+# before do
+#   # we do not want to redirect to twitter when the path info starts
+#   # with /auth/
+#   pass if request.path_info =~ /^\/auth\//
+
+#   # /auth/twitter is captured by omniauth:
+#   # when the path info matches /auth/twitter, omniauth will redirect to twitter
+#   redirect to('/auth/twitter') unless current_user
+# end
 
 sinatra_blog = Blog.new
 
@@ -23,6 +39,7 @@ get '/' do
 end
 
 get '/posts/create' do
+  redirect to('/auth/twitter') unless current_user
   @title = "Create post"
   erb :'posts/create', layout: :app
 end
@@ -40,4 +57,25 @@ get "/posts/:id" do
   @post = sinatra_blog.view_post(params[:id])
   @title = @post.title
   erb :'posts/view', layout: :app
+end
+
+get '/auth/:provider/callback' do
+  # probably you will need to create a user in the database too...
+  @user = User.from_omniauth(env['omniauth.auth'].except("extra"))
+  if @user.persisted? || @user.save 
+    session[:uid] = env['omniauth.auth']['uid']
+    redirect to('/')
+  else
+    redirect to('/')
+  end  
+end
+
+get '/auth/failure' do
+  # omniauth redirects to /auth/failure when it encounters a problem
+  # so you can implement this as you please
+end
+
+get '/auth/logout' do
+  session.clear
+  redirect to('/')
 end

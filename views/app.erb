@@ -26,6 +26,13 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="/posts/create"><span class="fa fa-plus"></span>  Add New Post</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <a href="auth/logout">Sign out</a>
+          <% else %>
+            <a href="auth/twitter">Sign in</a>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>

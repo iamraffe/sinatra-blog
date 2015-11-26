@@ -1,3 +1,16 @@
+require 'dotenv'
+Dotenv.load
+
+require 'omniauth-twitter'
+
+configure do
+  enable :sessions
+
+  use OmniAuth::Builder do
+    provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
+  end
+end
+
 configure :development do
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',

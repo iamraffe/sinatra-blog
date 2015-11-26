@@ -94,5 +94,7 @@ nav .nav li a {
   font-size: 12px;
   font-style: italic;
   margin-top: 0; }
+.post-excerpt hr {
+  padding: 25px 0; }
 
 /*# sourceMappingURL=custom.css.map */

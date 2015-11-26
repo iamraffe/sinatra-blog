@@ -1,11 +1,12 @@
 source "https://rubygems.org"
+gem "dotenv"
 gem "sinatra"
 gem "sinatra-contrib"
 gem "activerecord" 
 gem "sinatra-activerecord"
 gem 'rspec'
-gem 'sass'
-gem 'compass'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'sqlite3'
