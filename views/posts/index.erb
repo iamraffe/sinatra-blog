@@ -1,7 +1,31 @@
-<% @posts.each do |post| %>
- <li>
-   <h4><a href="/posts/<%= post.id %>"><%= post.title %></a></h4>
-   <p>Created: <%= post.created_at %></p>
- </li>
-<% end %>
-</ul>
+<header class="intro-header" style="background-image: url('images/frank-sinatra.jpg'); position: relative">
+  <div class="overlay"></div>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <div class="site-heading">
+                  <h1><img src="images/sinatra-signature.png" alt="" style="-webkit-filter: invert(1); filter: invert(1);"></h1>
+                  <hr class="small">
+                  <span class="subheading">A blog developed with the Sinatra Framework for Ironhack</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <% @posts.each do |post| %>
+        <article class="post-excerpt">
+          <header>
+            <h1 class="post-title"><a href="/posts/<%= post.id %>"><%= post.title %></a></h1>
+          </header>
+          <p><%= post.body %></p>
+          <footer>
+            <h1>Created: <%= post.created_at %></h1>
+          </footer>
+        </article>
+      <% end %>
+    </ul>
+  </div>
+</div>

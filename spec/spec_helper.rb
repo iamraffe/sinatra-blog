@@ -1,4 +1,3 @@
-require 'factory_girl'
 require 'active_record'
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
@@ -36,9 +35,6 @@ RSpec.configure do |config|
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
-  FactoryGirl.definition_file_paths = %w{./factories ./test/factories ./spec/factories}
-  FactoryGirl.find_definitions
-  config.include FactoryGirl::Syntax::Methods
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.

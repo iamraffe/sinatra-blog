@@ -13,6 +13,8 @@ require './environments'
 require_relative('./models/post.rb')
 require_relative('./models/blog.rb')
 
+after { ActiveRecord::Base.connection.close }
+
 sinatra_blog = Blog.new
 
 get '/' do
