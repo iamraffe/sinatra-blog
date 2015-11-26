@@ -11,10 +11,23 @@ require './environments'
 
 # We're going to need to require our class files
 require_relative('./models/post.rb')
-# require_relative('./models/todolist.rb')
+require_relative('./models/blog.rb')
 
 get '/' do
   @posts = Post.all
-  # erb :"tasks/index", layout: :app
-  erb :index, layout: :app
+  erb :'posts/index', layout: :app
+end
+
+get '/posts/create' do
+  @title = "Create post"
+  erb :'posts/create', layout: :app
+end
+
+post '/posts' do
+  @post = Post.new(params[:post])
+  if @post.save
+    redirect "posts/#{@post.id}"
+  else
+    redirect "posts/create"
+  end
 end

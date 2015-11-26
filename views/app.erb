@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sinatra blog!</title>
+  <title><%= "#{@title} |" if @title %>  Sinatra blog!</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
   <link rel="stylesheet" href="/css/sweetalert.css">
@@ -24,7 +24,7 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/task/create"><span class="fa fa-plus"></span>  Add New Post</a></li>
+          <li class="active"><a href="/posts/create"><span class="fa fa-plus"></span>  Add New Post</a></li>
         </ul>
       </div>
     </div>
