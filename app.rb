@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pry'
+# require 'pry'
 require 'json'
 
 enable :sessions
