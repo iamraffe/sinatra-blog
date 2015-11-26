@@ -14,7 +14,6 @@ require_relative('./models/post.rb')
 
 get '/' do
   @posts = Post.all
-  binding.pry
   # erb :"tasks/index", layout: :app
   erb :index, layout: :app
 end

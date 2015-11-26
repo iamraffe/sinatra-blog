@@ -3,7 +3,6 @@ gem "sinatra"
 gem "sinatra-contrib"
 gem "activerecord" 
 gem "sinatra-activerecord"
-gem "pry"
 gem 'rspec'
 
 group :development do
@@ -11,6 +10,7 @@ group :development do
   gem 'guard',  '>=2.0'
   gem 'guard-rspec'
   gem 'tux'
+  gem "factory_girl"
 end
  
 group :production do
