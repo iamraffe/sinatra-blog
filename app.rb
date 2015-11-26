@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'pry'
 require 'json'
 
+enable :sessions
 
 # DB
 require 'sinatra/activerecord'

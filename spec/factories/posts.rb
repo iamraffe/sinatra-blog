@@ -1,6 +1,11 @@
 FactoryGirl.define do
   factory :post do
-    title 'Example Post'
-    body 'Example body'
+
+    trait :example_post do
+      title 'Example Post Title'
+      body 'Example Post Body'
+    end
+
+
   end
 end

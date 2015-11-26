@@ -1,33 +1,29 @@
 require_relative "../models/post.rb"
 require "spec_helper"
 require 'active_record'
-
+require 'pry'
 
 describe Post do
-  before :each do
-    @post = Post.new('Title', 'Body')
-  end
-
   it 'must have a title and a body' do
-    expect{Post.new}.to raise_error(ArgumentError)
+    expect(Post.new({})).to be_invalid
   end
 
   it 'must have a title' do
-    expect{Post.new('Body')}.to raise_error(ArgumentError)
+    expect(Post.new({body: 'Body'})).to be_invalid
   end
 
   it 'must have a body' do
-    expect{Post.new('Title')}.to raise_error(ArgumentError)
+     expect(Post.new({title: 'Title'})).to be_invalid
   end
 
   it 'has a valid title and body' do
-    expect(@post).to be_valid
+    expect(Post.new({title: 'Title', body: 'Body'})).to be_valid
   end
 
-  # it 'has a valid body' do
-  #   expect(FactoryGirl.build(:post, year: nil)).to_not be_valid
-  # end
-  # it "should reverse the string you provide it" do
-  #   expect('Jeffrey').to eq('Jeffrey')
-  # end
+  it 'saves a post correctly in the database' do
+    blog_size_before_save = Post.all.size
+    Post.new({title: 'Title', body: 'Body'}).save
+    blog_size_after_save = Post.all.size
+    expect(blog_size_before_save+1).to eq(blog_size_after_save)
+  end
 end
