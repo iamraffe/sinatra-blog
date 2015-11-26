@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 gem "sinatra"
 gem "sinatra-contrib"
-require 'active_record'
+gem "activerecord" 
+gem "sinatra-activerecord"
 gem "pry"
 gem 'rspec'
 

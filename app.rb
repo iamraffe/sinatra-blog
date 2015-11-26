@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
+require 'json'
 
 
 # DB
-require 'sinatra/activerecord'
+require 'active_record'
 require './environments'
 
 # We're going to need to require our class files
