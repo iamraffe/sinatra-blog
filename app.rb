@@ -13,8 +13,10 @@ require './environments'
 require_relative('./models/post.rb')
 require_relative('./models/blog.rb')
 
+sinatra_blog = Blog.new
+
 get '/' do
-  @posts = Post.all
+  @posts = sinatra_blog.posts
   erb :'posts/index', layout: :app
 end
 
@@ -24,10 +26,16 @@ get '/posts/create' do
 end
 
 post '/posts' do
-  @post = Post.new(params[:post])
+  @post = sinatra_blog.add_post(params[:post])
   if @post.save
     redirect "posts/#{@post.id}"
   else
     redirect "posts/create"
   end
+end
+
+get "/posts/:id" do
+  @post = sinatra_blog.view_post(params[:id])
+  @title = @post.title
+  erb :'posts/view', layout: :app
 end
