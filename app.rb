@@ -5,7 +5,7 @@ require 'json'
 
 
 # DB
-require 'active_record'
+require 'sinatra/activerecord'
 require './environments'
 
 # We're going to need to require our class files
