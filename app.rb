@@ -9,27 +9,45 @@ require './environments'
 
 # We're going to need to require our class files
 require_relative('./models/post.rb')
-require_relative('./models/blog.rb')
+# require_relative('./models/blog.rb')
 require_relative('./models/user.rb')
+
+#Blog as a controller
+class Blog 
+  def posts
+    Post.order("created_at DESC")
+  end
+
+  def add_post(post)
+    Post.new(post)
+  end
+
+  def view_post(id)
+    Post.find(id)
+  end
+
+  def view_author(id)
+    User.find(id)
+  end
+end
 
 after { ActiveRecord::Base.connection.close }
 
 helpers do
   # define a current_user method, so we can be sure if an user is authenticated
   def current_user
-    !session[:uid].nil?
+    @current_user ||= User.find_by(uid: session[:uid])
   end
+
+  # def user_profile_picture_path
+  #   if current_user.provider == "facebook"
+  #     profile_picture_path = "#{current_user.image}?type=large"
+  #   else
+  #     profile_picture_path = "#{current_user.image}"
+  #   end
+  #   profile_picture_path
+  # end
 end
-
-# before do
-#   # we do not want to redirect to twitter when the path info starts
-#   # with /auth/
-#   pass if request.path_info =~ /^\/auth\//
-
-#   # /auth/twitter is captured by omniauth:
-#   # when the path info matches /auth/twitter, omniauth will redirect to twitter
-#   redirect to('/auth/twitter') unless current_user
-# end
 
 sinatra_blog = Blog.new
 
@@ -39,7 +57,7 @@ get '/' do
 end
 
 get '/posts/create' do
-  redirect to('/auth/twitter') unless current_user
+  redirect to('/auth/login') unless current_user
   @title = "Create post"
   erb :'posts/create', layout: :app
 end
@@ -75,7 +93,18 @@ get '/auth/failure' do
   # so you can implement this as you please
 end
 
+get '/auth/login' do
+  session.clear
+   erb :'auth/login', layout: :app
+end
+
 get '/auth/logout' do
   session.clear
   redirect to('/')
+end
+
+get '/users/:id' do
+  @user = sinatra_blog.view_author(params[:id])
+  @title = @user.name
+  erb :'users/view', layout: :app
 end

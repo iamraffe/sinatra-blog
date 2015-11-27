@@ -2,12 +2,16 @@ require 'dotenv'
 Dotenv.load
 
 require 'omniauth-twitter'
+require 'omniauth-facebook'
+require 'omniauth-google-oauth2'
 
 configure do
   enable :sessions
 
   use OmniAuth::Builder do
-    provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
+    provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET'], {:image_size => 'original'}
+    provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], {:image_size => 'large'}
+    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {:image_size => 150}
   end
 end
 

@@ -1,5 +1,5 @@
 $('nav.navbar').affix({
       offset: {
-        top: $('header').height()-$('nav.navbar').height()
+        top: $('header.intro-header').height()-$('nav.navbar').height()
       }
 }); 

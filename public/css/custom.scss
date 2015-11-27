@@ -3,8 +3,14 @@
 body{
   font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-size:20px;
-  color:#404040
+  color:#404040;
+  padding-top: 63px;
 }
+
+header{
+
+}
+
 
 a{
   color:#404040;
@@ -14,8 +20,7 @@ a{
   }
 }
 
-.intro-header{
-  background-color:gray;
+header.intro-header{
   background:no-repeat center center;
   background-attachment:scroll;
   -webkit-background-size:cover;
@@ -23,6 +28,9 @@ a{
   background-size:cover;
   -o-background-size:cover;
   margin-bottom: 50px;
+  margin-top: -63px;
+  background-image: url('../images/frank-sinatra.jpg');
+  position: relative;
 
   .site-heading,  .post-heading, .page-heading{
     padding:100px 0 50px;
@@ -109,6 +117,15 @@ nav .nav li a{
 
 }
 
+.user-image-nav{
+  img{
+    height: 35px;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    margin-right: 15px;
+  }
+}
+
 .post-excerpt{
   a{
     color: #008cba;
@@ -126,6 +143,12 @@ nav .nav li a{
       margin-bottom:10px;
       font-family: 'La Belle Aurore', cursive;
     }
+    h2.post-author{
+      font-size:20px;
+      margin-top:5px;
+      margin-bottom:20px;
+      font-family: 'La Belle Aurore', cursive;
+    }
   }
   footer{
     h1{
@@ -138,4 +161,48 @@ nav .nav li a{
   hr{
     padding: 25px 0;
   }
+}
+
+.social-login{
+  padding-top: 150px;
+  padding-bottom: 300px;
+
+  img{
+    display: block;
+    margin: 50px auto;
+    height: 150px;
+  }
+}
+
+section.user-info{
+  header{
+    background-color: #F1C40F;
+    border-bottom: 2px solid darken(#F1C40F, 5%);
+    position: relative;
+    min-height: 150px;
+
+    .user-picture{
+      position: absolute;
+      bottom: -50px;
+      left: 50px;
+      height: 150px;
+      outline: 1px solid #f6f6f6;
+    }
+    .user-name{
+      position: absolute;
+      font-family: 'La Belle Aurore', cursive;
+      color: white;
+      font-size: 60px;
+      left: 225px;
+      bottom: 0px;
+    }
+  }
+}
+section.user-posts{
+  margin-top: 150px;
+  min-height: 450px;
+}
+
+section.form-wrapper{
+  margin-bottom: 150px;
 }

@@ -1,4 +1,4 @@
-<header class="intro-header" style="background-image: url('images/frank-sinatra.jpg'); position: relative">
+<header class="intro-header" style="">
   <div class="overlay"></div>
   <div class="container-fluid">
       <div class="row">
@@ -12,13 +12,14 @@
       </div>
   </div>
 </header>
-<div class="container">
+<section class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <% @posts.each do |post| %>
         <article class="post-excerpt">
           <header>
             <h1 class="post-title"><a href="/posts/<%= post.id %>"><%= post.title %></a></h1>
+            <h2 class="post-author">written by <a href="/users/<%= post.user.id %>"><%= post.user.name %></a></h2>
           </header>
           <p><%= post.body %></p>
           <footer>
@@ -28,4 +29,4 @@
       <% end %>
     </ul>
   </div>
-</div>
+</section>
