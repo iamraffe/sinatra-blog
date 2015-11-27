@@ -15,9 +15,26 @@
   <section class="row user-posts">
     <div class="col-md-12">
       <% if @user.posts.any? %>
-        <h3>Posts (<%= @user.posts.count %>)</h3>
-      <% else %>
+        <h3><%= @user.name %>'s posts (<%= @user.posts.count %>)</h3>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <% @user.posts.each do |post| %>
+              <article class="post-excerpt">
+                <header>
+                  <h1 class="post-title"><a href="/posts/<%= post.id %>"><%= post.title %></a></h1>
+                </header>
+                <p><%= post.body %></p>
+                <footer>
+                  <h1>Created: <%= post.created_at %></h1>
+                </footer>
+              </article>
+            <% end %>
+          </div>
+        </div>
+      <% elsif @user == current_user %>
         <h3 class="text-center">You have not posted anything yet... <a href="/posts/create"><strong>Get started!</strong></a></h3>
+      <% else %>
+        <h3 class="text-center">This user has not posted anything yet... </h3>
       <% end %>
     </div>
   </section>

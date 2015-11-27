@@ -1,2 +1,20 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
+<div class="container">
+  <section class="row post-full">
+    <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+              <article class="post-excerpt">
+                <header>
+                  <h1 class="post-title"><a href="/posts/<%= @post.id %>"><%= @post.title %></a></h1>
+                  <h2 class="post-author">written by <a href="/users/<%= @post.user.id %>"><%= @post.user.name %></a></h2>
+                </header>
+                <p><%= @post.body %></p>
+                <footer>
+                  <h1>Created: <%= @post.created_at %></h1>
+                </footer>
+              </article>
+          </div>
+        </div>
+    </div>
+  </section>
+</div>
