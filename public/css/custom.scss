@@ -100,7 +100,7 @@ nav{
   &.affix{
     background-color: white;
     border-bottom: 2px solid darken(white, 15%);
-    
+
     .nav li a{
       color: darken(rgba(255,255,255,.8), 75%) !important;
     }
@@ -116,7 +116,7 @@ nav .nav li a{
   padding:20px;
 
   &:focus, &:hover{
-    color:rgba(255,255,255,.8);  
+    color:rgba(255,255,255,.8);
     background-color: transparent;
   }
 
@@ -234,5 +234,9 @@ footer.container{
 }
 
 section.post-full{
+  margin-top: 100px;
+}
+
+#disqus_thread{
   margin-top: 100px;
 }

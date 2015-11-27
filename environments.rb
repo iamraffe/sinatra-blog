@@ -4,6 +4,7 @@ Dotenv.load
 require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'omniauth-google-oauth2'
+require 'sinatra/disqus'
 
 configure do
   enable :sessions
@@ -15,12 +16,19 @@ configure do
   end
 end
 
+configure :test do
+ActiveRecord::Base.establish_connection(
+  :adapter => 'sqlite3',
+  :database =>  'test_application.sqlite3.db'
+)
+end
+
 configure :development do
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
-  :database =>  'sinatra_application.sqlite3.db',
-  :pool => ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 
+  :database =>  'sinatra_application.sqlite3.db'
 )
+set :disqus_shortname, "localhost:4567"
 end
 
 configure :production do
@@ -34,4 +42,6 @@ configure :production do
    :database => db.path[1..-1],
    :encoding => 'utf8'
  )
+  # Disqus settings
+  set :disqus_shortname, "example.org"
 end

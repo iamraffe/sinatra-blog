@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 # require 'pry'
 require 'json'
-
+require 'sinatra/disqus'
 # DB
 require 'sinatra/activerecord'
 require './environments'
@@ -13,7 +13,7 @@ require_relative('./models/post.rb')
 require_relative('./models/user.rb')
 
 #Blog as a controller
-class Blog 
+class Blog
   def posts
     Post.order("created_at DESC")
   end
@@ -80,12 +80,12 @@ end
 get '/auth/:provider/callback' do
   # probably you will need to create a user in the database too...
   @user = User.from_omniauth(env['omniauth.auth'].except("extra"))
-  if @user.persisted? || @user.save 
+  if @user.persisted? || @user.save
     session[:uid] = env['omniauth.auth']['uid']
     redirect to('/')
   else
     redirect to('/')
-  end  
+  end
 end
 
 get '/auth/failure' do
