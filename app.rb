@@ -108,3 +108,7 @@ get '/users/:id' do
   @title = @user.name
   erb :'users/view', layout: :app
 end
+
+get '/localhost' do
+  redirect('127.0.0.1:9292')
+end
