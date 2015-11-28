@@ -110,5 +110,5 @@ get '/users/:id' do
 end
 
 get '/localhost' do
-  redirect '127.0.0.1:9292'
+  redirect 'http://127.0.0.1:9292'
 end
